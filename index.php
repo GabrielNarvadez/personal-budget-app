@@ -74,7 +74,7 @@ $tLeft = $tBud - $tSp;
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#F5F5F7">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Budget</title>
+<title>Personal Budget Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
