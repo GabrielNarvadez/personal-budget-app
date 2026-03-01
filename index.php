@@ -14,7 +14,7 @@ if (empty($_SESSION['auth'])) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#F5F5F7">
-<title>Budget</title>
+<title>Personal Budget Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head><body>
 <div id="app" style="display:flex;align-items:center;justify-content:center;min-height:100dvh">
