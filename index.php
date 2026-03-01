@@ -1,7 +1,32 @@
-
-
-
 <?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['__pw'])) {
+    if (password_verify($_POST['__pw'], '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.')) {
+        $_SESSION['auth'] = true;
+    }
+    header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?')); exit;
+}
+
+if (empty($_SESSION['auth'])) {
+    echo '<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F5F5F7">
+<title>Budget</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div id="app" style="display:flex;align-items:center;justify-content:center;min-height:100dvh">
+<div class="s" style="max-width:340px;width:100%">
+<h2 style="text-align:center;margin-bottom:20px">🔒 Budget</h2>
+<form method="post">
+<input type="password" name="__pw" placeholder="Password" class="inp" autofocus required>
+<button type="submit" class="btn bp" style="margin-top:10px">Unlock</button>
+</form>
+</div></div></body></html>';
+    exit;
+}
+
 require_once __DIR__ . '/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -40,19 +65,6 @@ $iCats = array_filter($cats, fn($c)=>$c['type']==='income');
 $tBud = array_sum(array_column($budgets,'budget'));
 $tSp = array_sum(array_column($budgets,'spent'));
 $tLeft = $tBud - $tSp;
-?>
-<?php
-session_start();
-define('APP_PASSWORD', password_hash('KatieBruha_02', PASSWORD_DEFAULT));
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['__pw'])) {
-    if (password_verify($_POST['__pw'], APP_PASSWORD)) {
-        $_SESSION['auth'] = true;
-    }
-    header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?')); exit;
-}
-
-if (empty($_SESSION['auth'])):
 ?>
 <!DOCTYPE html>
 <html lang="en">
