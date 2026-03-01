@@ -2,7 +2,8 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['__pw'])) {
-    if (password_verify($_POST['__pw'], '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.')) {
+    $entered = $_POST['__pw'] ?? '';
+    if ($entered === 'KatieBruha_02') {
         $_SESSION['auth'] = true;
     }
     header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?')); exit;
