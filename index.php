@@ -1,4 +1,19 @@
 <?php
+session_start();
+define('APP_PASSWORD', password_hash('KatieBruha_02', PASSWORD_DEFAULT));
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['__pw'])) {
+    if (password_verify($_POST['__pw'], APP_PASSWORD)) {
+        $_SESSION['auth'] = true;
+    }
+    header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?')); exit;
+}
+
+if (empty($_SESSION['auth'])):
+?>
+
+
+<?php
 require_once __DIR__ . '/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
